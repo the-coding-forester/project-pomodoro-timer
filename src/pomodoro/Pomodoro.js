@@ -22,7 +22,7 @@ function Pomodoro() {
       <div className="row">
         <div className="col">
           <div className="input-group input-group-lg mb-2">
-            <span className="input-group-text" data-testid="focus-duration">
+            <span className="input-group-text" data-testid="duration-focus">
               Focus Duration: 25:00
             </span>
             <div className="input-group-append">
@@ -48,7 +48,7 @@ function Pomodoro() {
         <div className="col">
           <div className="float-right">
             <div className="input-group input-group-lg mb-2">
-              <span className="input-group-text" data-testid="break-duration">
+              <span className="input-group-text" data-testid="duration-break">
                 Break Duration: 05:00
               </span>
               <div className="input-group-append">

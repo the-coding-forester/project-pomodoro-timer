@@ -30,7 +30,7 @@ describe("Pomodoro Timer", () => {
   describe("Focus duration", () => {
     test("displays 25:00 by default", () => {
       const { getByTestId } = render(<Pomodoro />);
-      expect(getByTestId("focus-duration")).toHaveTextContent(
+      expect(getByTestId("duration-focus")).toHaveTextContent(
         "Focus Duration: 25:00"
       );
     });
@@ -41,13 +41,13 @@ describe("Pomodoro Timer", () => {
 
       userEvent.click(increaseFocus);
 
-      expect(getByTestId("focus-duration")).toHaveTextContent(
+      expect(getByTestId("duration-focus")).toHaveTextContent(
         "Focus Duration: 30:00"
       );
 
       userEvent.click(increaseFocus);
 
-      expect(getByTestId("focus-duration")).toHaveTextContent(
+      expect(getByTestId("duration-focus")).toHaveTextContent(
         "Focus Duration: 35:00"
       );
     });
@@ -61,7 +61,7 @@ describe("Pomodoro Timer", () => {
         .fill(0)
         .forEach(() => userEvent.click(increaseFocus));
 
-      expect(getByTestId("focus-duration")).toHaveTextContent(
+      expect(getByTestId("duration-focus")).toHaveTextContent(
         "Focus Duration: 60:00"
       );
     });
@@ -73,13 +73,13 @@ describe("Pomodoro Timer", () => {
 
       userEvent.click(decreaseFocus);
 
-      expect(getByTestId("focus-duration")).toHaveTextContent(
+      expect(getByTestId("duration-focus")).toHaveTextContent(
         "Focus Duration: 20:00"
       );
 
       userEvent.click(decreaseFocus);
 
-      expect(getByTestId("focus-duration")).toHaveTextContent(
+      expect(getByTestId("duration-focus")).toHaveTextContent(
         "Focus Duration: 15:00"
       );
     });
@@ -93,7 +93,7 @@ describe("Pomodoro Timer", () => {
         .fill(0)
         .forEach(() => userEvent.click(decreaseFocus));
 
-      expect(getByTestId("focus-duration")).toHaveTextContent(
+      expect(getByTestId("duration-focus")).toHaveTextContent(
         "Focus Duration: 05:00"
       );
     });
@@ -102,7 +102,7 @@ describe("Pomodoro Timer", () => {
   describe("Break duration", () => {
     test("displays 05:00 by default", () => {
       const { getByTestId } = render(<Pomodoro />);
-      expect(getByTestId("break-duration")).toHaveTextContent(
+      expect(getByTestId("duration-break")).toHaveTextContent(
         "Break Duration: 05:00"
       );
     });
@@ -113,13 +113,13 @@ describe("Pomodoro Timer", () => {
 
       userEvent.click(increaseBreak);
 
-      expect(getByTestId("break-duration")).toHaveTextContent(
+      expect(getByTestId("duration-break")).toHaveTextContent(
         "Break Duration: 06:00"
       );
 
       userEvent.click(increaseBreak);
 
-      expect(getByTestId("break-duration")).toHaveTextContent(
+      expect(getByTestId("duration-break")).toHaveTextContent(
         "Break Duration: 07:00"
       );
     });
@@ -133,7 +133,7 @@ describe("Pomodoro Timer", () => {
         .fill(0)
         .forEach(() => userEvent.click(increaseBreak));
 
-      expect(getByTestId("break-duration")).toHaveTextContent(
+      expect(getByTestId("duration-break")).toHaveTextContent(
         "Break Duration: 15:00"
       );
     });
@@ -145,13 +145,13 @@ describe("Pomodoro Timer", () => {
 
       userEvent.click(decreaseBreak);
 
-      expect(getByTestId("break-duration")).toHaveTextContent(
+      expect(getByTestId("duration-break")).toHaveTextContent(
         "Break Duration: 04:00"
       );
 
       userEvent.click(decreaseBreak);
 
-      expect(getByTestId("break-duration")).toHaveTextContent(
+      expect(getByTestId("duration-break")).toHaveTextContent(
         "Break Duration: 03:00"
       );
     });
@@ -165,7 +165,7 @@ describe("Pomodoro Timer", () => {
         .fill(0)
         .forEach(() => userEvent.click(decreaseBreak));
 
-      expect(getByTestId("break-duration")).toHaveTextContent(
+      expect(getByTestId("duration-break")).toHaveTextContent(
         "Break Duration: 01:00"
       );
     });
