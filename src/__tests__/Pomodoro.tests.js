@@ -5,7 +5,13 @@ import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 
 describe("Pomodoro Timer", () => {
-  beforeEach(() => jest.useFakeTimers());
+  beforeEach(() => {
+    // Playing audio is not supported in jsdom
+    window.HTMLMediaElement.prototype.load = jest.fn();
+    window.HTMLMediaElement.prototype.play = jest.fn();
+    window.HTMLMediaElement.prototype.pause = jest.fn();
+    jest.useFakeTimers()
+  });
 
   test("Clicking play button changes it to a pause button", async () => {
     const { getByTestId } = render(<Pomodoro />);
