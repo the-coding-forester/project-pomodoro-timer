@@ -313,7 +313,9 @@ describe("Pomodoro Timer", () => {
 
       act(() => jest.advanceTimersByTime(300000));
 
-      expect(getByRole("progressbar").getAttribute("aria-valuenow")).toBe("20");
+      const valueNow = Number(getByRole("progressbar").getAttribute("aria-valuenow"));
+      expect(valueNow).toBeGreaterThan(19)
+      expect(valueNow).toBeLessThan(21);
     });
     test("increases progress as break timer runs", () => {
       const { getByRole, getByTestId } = render(<Pomodoro />);
@@ -324,9 +326,9 @@ describe("Pomodoro Timer", () => {
       // Fast-forward 26:01 minutes so default 25:00 focus timer expires and 1:00 of break is consumed
       act(() => jest.advanceTimersByTime(1561000));
 
-      expect(
-        Number(getByRole("progressbar").getAttribute("aria-valuenow"))
-      ).toBeCloseTo(20, 3);
+      const valueNow = Number(getByRole("progressbar").getAttribute("aria-valuenow"));
+      expect(valueNow).toBeGreaterThan(19)
+      expect(valueNow).toBeLessThan(21);
     });
   });
 });
