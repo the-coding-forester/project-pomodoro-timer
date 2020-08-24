@@ -313,7 +313,6 @@ describe("Pomodoro Timer", () => {
 
       act(() => jest.advanceTimersByTime(300000));
 
-      console.log(getByRole("progressbar").outerHTML);
       expect(getByRole("progressbar").getAttribute("aria-valuenow")).toBe("20");
     });
     test("increases progress as break timer runs", () => {

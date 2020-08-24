@@ -23,6 +23,7 @@ function Pomodoro() {
         <div className="col">
           <div className="input-group input-group-lg mb-2">
             <span className="input-group-text" data-testid="duration-focus">
+              {/* ToDO: Update this text to display the current focus session duration */}
               Focus Duration: 25:00
             </span>
             <div className="input-group-append">
@@ -49,6 +50,7 @@ function Pomodoro() {
           <div className="float-right">
             <div className="input-group input-group-lg mb-2">
               <span className="input-group-text" data-testid="duration-break">
+                {/* ToDO: Update this text to display the current focus session duration */}
                 Break Duration: 05:00
               </span>
               <div className="input-group-append">
