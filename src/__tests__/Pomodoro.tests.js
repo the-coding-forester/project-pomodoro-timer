@@ -10,7 +10,7 @@ describe("Pomodoro Timer", () => {
     window.HTMLMediaElement.prototype.load = jest.fn();
     window.HTMLMediaElement.prototype.play = jest.fn();
     window.HTMLMediaElement.prototype.pause = jest.fn();
-    jest.useFakeTimers()
+    jest.useFakeTimers();
   });
 
   test("Clicking play button changes it to a pause button", async () => {
@@ -173,6 +173,9 @@ describe("Pomodoro Timer", () => {
   describe("Session title", () => {
     test('displays "Focusing for 25:00 minutes" by default', () => {
       const { getByTestId } = render(<Pomodoro />);
+
+      userEvent.click(getByTestId("play-pause"));
+
       expect(getByTestId("session-title")).toHaveTextContent(
         "Focusing for 25:00 minutes"
       );
@@ -198,31 +201,19 @@ describe("Pomodoro Timer", () => {
         "On Break for 05:00 minutes"
       );
     });
-    test('displays "Focusing for 05:00 minutes" after focus duration is decreased and break session expires', () => {
+    test('displays "Focusing for 05:00 minutes" after focus duration is decreased session is started', () => {
       const { getByTestId } = render(<Pomodoro />);
 
       // Set the times to the minimums
       const decreaseFocus = getByTestId("decrease-focus");
-      const decreaseBreak = getByTestId("decrease-break");
 
       Array(10)
         .fill(0)
         .forEach(() => {
           userEvent.click(decreaseFocus);
-          userEvent.click(decreaseBreak);
         });
 
       userEvent.click(getByTestId("play-pause"));
-
-      // Fast-forward 25.5 minutes so default 25:00 focus timer expires
-      act(() => jest.advanceTimersByTime(1530000));
-
-      expect(getByTestId("session-title")).toHaveTextContent(
-        "On Break for 01:00 minutes"
-      );
-
-      // Fast-forward 2 minutes so break timer expires
-      act(() => jest.advanceTimersByTime(120000));
 
       expect(getByTestId("session-title")).toHaveTextContent(
         "Focusing for 05:00 minutes"
@@ -244,8 +235,8 @@ describe("Pomodoro Timer", () => {
 
       userEvent.click(getByTestId("play-pause"));
 
-      // Fast-forward 25.5 minutes so default 25:00 focus timer expires
-      act(() => jest.advanceTimersByTime(1530000));
+      // Fast-forward 5.5 minutes so default 5:00 focus timer expires
+      act(() => jest.advanceTimersByTime(330000));
 
       expect(getByTestId("session-title")).toHaveTextContent(
         "On Break for 01:00 minutes"
@@ -256,6 +247,12 @@ describe("Pomodoro Timer", () => {
   describe("Session sub-title", () => {
     test('displays "25:00 remaining" by default', () => {
       const { getByTestId } = render(<Pomodoro />);
+
+      // start the session
+      userEvent.click(getByTestId("play-pause"));
+      // pause the session
+      userEvent.click(getByTestId("play-pause"));
+
       expect(getByTestId("session-sub-title")).toHaveTextContent(
         "25:00 remaining"
       );
@@ -302,7 +299,11 @@ describe("Pomodoro Timer", () => {
 
   describe("Progress bar", () => {
     test("displays 0% progress by default", () => {
-      const { getByRole } = render(<Pomodoro />);
+      const { getByRole, getByTestId } = render(<Pomodoro />);
+      // start the session
+      userEvent.click(getByTestId("play-pause"));
+      // pause the session
+      userEvent.click(getByTestId("play-pause"));
       expect(getByRole("progressbar").getAttribute("aria-valuenow")).toBe("0");
     });
     test("aria-valuenow is 20 after 5 minutes", () => {
@@ -313,8 +314,10 @@ describe("Pomodoro Timer", () => {
 
       act(() => jest.advanceTimersByTime(300000));
 
-      const valueNow = Number(getByRole("progressbar").getAttribute("aria-valuenow"));
-      expect(valueNow).toBeGreaterThan(19)
+      const valueNow = Number(
+        getByRole("progressbar").getAttribute("aria-valuenow")
+      );
+      expect(valueNow).toBeGreaterThan(19);
       expect(valueNow).toBeLessThan(21);
     });
     test("increases progress as break timer runs", () => {
@@ -326,8 +329,10 @@ describe("Pomodoro Timer", () => {
       // Fast-forward 26:01 minutes so default 25:00 focus timer expires and 1:00 of break is consumed
       act(() => jest.advanceTimersByTime(1561000));
 
-      const valueNow = Number(getByRole("progressbar").getAttribute("aria-valuenow"));
-      expect(valueNow).toBeGreaterThan(19)
+      const valueNow = Number(
+        getByRole("progressbar").getAttribute("aria-valuenow")
+      );
+      expect(valueNow).toBeGreaterThan(19);
       expect(valueNow).toBeLessThan(21);
     });
   });

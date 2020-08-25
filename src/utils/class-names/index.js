@@ -12,7 +12,7 @@
  *   if currentState.isPaused === true, the className will be "oi oi-media-play" otherwise it will be "oi oi-media-pause"
  *
  * @param classNameToBoolean
- *    a map of class name to a boolean value. If the boolean value is `true`, the class name is included, otherwise it is excluded.
+ *    a map of a class name to a boolean value. If the boolean value is `true`, the class name is included, otherwise it is excluded.
  * @returns {string}
  *    a space delimited string of the class names which have a value of `true`.
  */
