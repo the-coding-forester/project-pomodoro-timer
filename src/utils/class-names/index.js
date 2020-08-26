@@ -19,8 +19,8 @@
 export default function classNames(classNameToBoolean) {
   return Object.entries(classNameToBoolean)
     .reduce(
-      (classNames, [className, value]) =>
-        classNames.concat(value ? className : undefined),
+      (classes, [className, value]) =>
+        classes.concat(value ? className : undefined),
       []
     )
     .filter((className) => className !== undefined)
