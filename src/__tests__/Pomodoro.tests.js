@@ -170,6 +170,7 @@ describe("Pomodoro Timer", () => {
       );
     });
   });
+
   describe("Session title", () => {
     test('displays "Focusing for 25:00 minutes" by default', () => {
       const { getByTestId } = render(<Pomodoro />);
@@ -240,6 +241,29 @@ describe("Pomodoro Timer", () => {
 
       expect(getByTestId("session-title")).toHaveTextContent(
         "On Break for 01:00 minutes"
+      );
+    });
+    test('starts a new focus session after break session expires', () => {
+      const { getByTestId } = render(<Pomodoro />);
+
+      // Set the times to the minimums
+      const decreaseFocus = getByTestId("decrease-focus");
+      const decreaseBreak = getByTestId("decrease-break");
+
+      Array(10)
+        .fill(0)
+        .forEach(() => {
+          userEvent.click(decreaseFocus);
+          userEvent.click(decreaseBreak);
+        });
+
+      userEvent.click(getByTestId("play-pause"));
+
+      // Fast-forward 6.5 minutes so first focus and break sessions expire
+      act(() => jest.advanceTimersByTime(390000));
+
+      expect(getByTestId("session-title")).toHaveTextContent(
+        "Focusing for 05:00 minutes"
       );
     });
   });

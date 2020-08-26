@@ -15,53 +15,35 @@ This application uses [Bootstrap 4](https://getbootstrap.com/) for styling and [
 
 ## Initial Screen
 
-The initial screen lets the user set the length of the focus and break and break sessions.
+The initial screen lets the user set the length of the focus and break and break sessions. 
 
 ![Initial Screen](./docs/pomodoro-initial-screen.png)
 
-The "stop" button is disabled on the initial screen.
+The "stop" button is disabled on the initial screen because the user has not yet started the timer.  
 
-When the user clicks the "play" button, it changes to a "pause" button, and a new focus session is started.
+When the user clicks the "play" button, the timer will always start a new focus session.
 
 ## Active Session Screen
 
-After the user clicks the "play" button:
+After the user clicks the "play" button, the buttons to change the focus and break duration are disabled and the session timer appears. 
 
-- the play button changes to a "pause" button
-- the buttons to change the focus and break duration are disabled
-- the stop button is enabled
-- the session information area appears
+![Active Session Screen](./docs/pomodoro-active-sesson.png) 
 
-![Active Session Screen](./docs/pomodoro-active-sesson.png)
-
-The session information area displays:
-
-- the type of session, either "Focusing" or "On Break"
-- the total duration of the session
-- the time remaining in the session
-- a progress bar showing how much of the session is complete
+The session timer shows the type of session, either "Focusing" or "On Break", the total duration of the session, the time remaining, and a progress bar showing how much of the session is complete.
 
 ## Paused Session Screen
 
-If the user clicks the "pause" button, "paused" appears in the session information area .
+If the user clicks the "pause" button, "paused" appears below the time remaining. 
 
-![Paused Session Screen](./docs/pomodoro-paused-session.png)
+![Paused Session Screen](./docs/pomodoro-paused-sesson.png) 
 
-Clicking the "play" button resumes the session.
+The session timer shows the type of session, either "Focusing" or "On Break", the total duration of the session, the time remaining, and a progress bar showing how much of the session is complete.
 
 ## Stoping a session
 
-Stopping a session returns the application to the initial screen and the user is able to change the focus and break duration.
+Stopping a session returns the application to the initial screen and the user is able to change the focus and break duration. 
 
 Clicking the "play" button will always start a new focus session.
-
-## Time expired
-
-When the time remaining in the session is 00:00, an alarm will play and the next session will start.
-
-The application starts with a focus session followed by a break session, then it starts another focus session, then a break session, and so on, alternating between focus and break sessions until the user clicks stop.
-
-There are sample mp3 files located in the `public/alarm` directory, or you can use any mp3 you like.
 
 ## Setup
 
@@ -72,29 +54,29 @@ cd pomodoro-timer
 npm install
 ```
 
+
 ## Specific instruction
 
 1. The code has various TODO items that should help you build the project as expected. With that said, feel free to make the changes you feel are necessary to accomplish the tasks.
 1. Break up the code into at least two additional components that have a single responsibility.
-1. The user cannot change the focus or break duration during a session.
+1. The user cannot change the duration of the focus or break during a focus or break session. 
 1. Display durations as `mm:ss`. i.e. 05:00 for 5 minutes or 18:45 for eighteen minutes and forty-five seconds.
 1. The tests use the `data-testid="..."` attributes on elements. Removing these will break one or more tests.
 
 ## Using `setInterval` in React
 
-Using `setInterval` with React functional components requires a custom hook.
+Using `setInterval` with React functional components requires a custom hook. 
 
 We have provided a custom [`useInterval`](./src/useInterval/index.js) hook for you to use that is already setup to start and stop with the play/pause buttons
 
-You may not have learned about hooks yet, but don't worry, this function works exactly like `setInterval` except you don't use `clearInterval` to stop it.
+You may not have learned about hooks yet, but don't worry, this function works exactly like `setInterval` except you don't use `clearInterval` to stop it. 
 
 As it is currently configured, the `useInterval` will execute the code in the callback every second, unless `isTimerRunning` is set to false.
 This should be sufficient to implement the pomodoro timer.
 
 ## Playing Audio alarm
 
-Use the following code to play an alarm when the time expires. There are sample mp3 files located in the `public/alarm` directory, or you can use any mp3 you like.
-
+Use the following code to play an alarm when the time expires. There are sample mp3 files located in the `public` directory that you can use, use any mp3 you like..
 ```javascript
 new Audio(`${process.env.PUBLIC_URL}/alarm/submarine-dive-horn.mp3`).play();
 ```
@@ -106,19 +88,15 @@ new Audio(`${process.env.PUBLIC_URL}/alarm/submarine-dive-horn.mp3`).play();
 Use this function to dynamically assign the className property of react components.
 
 Usage:
-
 ```jsx
-<span
-  className={classNames({
-    oi: true,
-    "oi-media-play": currentState.isPaused,
-    "oi-media-pause": !currentState.isPaused,
-  })}
-/>
-```
-
-if currentState.isPaused === true, the className will be "oi oi-media-play" otherwise it will be "oi oi-media-pause"
-
+<span className={classNames({
+                "oi": true,
+                "oi-media-play": currentState.isPaused,
+                'oi-media-pause': !currentState.isPaused
+              })}/>
+ ```
+ if currentState.isPaused === true, the className will be "oi oi-media-play" otherwise it will be "oi oi-media-pause"
+ 
 `classNames` takes a map of a class name to a boolean value. If the boolean value is `true`, the class name is included, otherwise it is excluded.
 
 returns: A space delimited string of the class names which have a value of `true`.
@@ -128,9 +106,9 @@ returns: A space delimited string of the class names which have a value of `true
 **minutesToDuration** formats a number of minutes as 'mm:00'. For example,
 
 ```javascript
-import { minutesToDuration } from "../utils/duration";
-minutesToDuration(3); // '03:00'
-minutesToDuration(45); // '45:00'
+import {minutesToDuration} from '../utils/duration';
+minutesToDuration(3) // '03:00'
+minutesToDuration(45) // '45:00'
 ```
 
 ## secondsToDuration fuction
@@ -138,7 +116,9 @@ minutesToDuration(45); // '45:00'
 **secondsToDuration** formats a number of seconds as 'mm:ss'. For example,
 
 ```javascript
-import { secondsToDuration } from "../utils/duration";
-secondsToDuration(305); // '05:05'
-secondsToDuration(930); // '15:30'
+import {secondsToDuration} from '../utils/duration';
+secondsToDuration(305) // '05:05'
+secondsToDuration(930) // '15:30'
 ```
+
+
