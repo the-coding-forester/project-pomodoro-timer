@@ -14,7 +14,7 @@ function Pomodoro() {
   );
 
   function playPause() {
-    setIsTimerRunning(prevState => !prevState)
+    setIsTimerRunning((prevState) => !prevState);
   }
 
   return (
@@ -103,11 +103,8 @@ function Pomodoro() {
               className="btn btn-secondary"
               title="Stop the session"
             >
-              <span
-                className="oi oi-media-stop"
-              />
+              <span className="oi oi-media-stop" />
             </button>
-
           </div>
         </div>
       </div>
