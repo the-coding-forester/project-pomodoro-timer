@@ -13,8 +13,8 @@ function Pomodoro() {
     isTimerRunning ? 1000 : null
   );
 
-  function toggleTimer(isTimerRunning) {
-    return !isTimerRunning;
+  function playPause() {
+    setIsTimerRunning(prevState => !prevState)
   }
 
   return (
@@ -87,7 +87,7 @@ function Pomodoro() {
               className="btn btn-primary"
               data-testid="play-pause"
               title="Start or pause timer"
-              onClick={() => setIsTimerRunning(toggleTimer)}
+              onClick={playPause}
             >
               <span
                 className={classNames({
