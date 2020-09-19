@@ -35,7 +35,7 @@ The session timer shows the type of session, either "Focusing" or "On Break", th
 
 If the user clicks the "pause" button, "paused" appears below the time remaining. 
 
-![Paused Session Screen](./docs/pomodoro-paused-sesson.png) 
+![Paused Session Screen](./docs/pomodoro-paused-session.png) 
 
 The session timer shows the type of session, either "Focusing" or "On Break", the total duration of the session, the time remaining, and a progress bar showing how much of the session is complete.
 
@@ -122,3 +122,4 @@ secondsToDuration(930) // '15:30'
 ```
 
 
+j
