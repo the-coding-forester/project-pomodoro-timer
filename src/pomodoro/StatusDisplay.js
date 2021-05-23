@@ -8,23 +8,20 @@ function StatusDisplay({ focusDuration, breakDuration, isPaused, isRunning }) {
 
   useInterval(
     () => {
+      if (isPaused) {
+        return
+      }
       if (countdownTime === 0) {
+        new Audio(`https://bigsoundbank.com/UPLOAD/mp3/1482.mp3`).play();
         setIsFocusing((prevState) => !prevState);
         isFocusing ? setCountdownTime(breakDuration) : setCountdownTime(focusDuration);
 
         return;
       }
-      if (isPaused) {
-        return
-      }
       setCountdownTime((currentCountdownTime) => currentCountdownTime - 1)
     },
     isRunning ? 1000 : null
   );
-
-  if (isPaused) {
-
-  }
 
   if (!isRunning) {
     if (!isFocusing) {
