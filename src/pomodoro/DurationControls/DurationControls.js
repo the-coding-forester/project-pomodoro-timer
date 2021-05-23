@@ -4,7 +4,7 @@ import Duration from "./Duration"
 function DurationControls({ onFocusDurationChange, onBreakDurationChange, focusMinutes, breakMinutes }) {
 
   return (
-    <div className="row">
+    <div className="row" >
       <Duration
         onDurationChange={onFocusDurationChange}
         classSuffix="focus"

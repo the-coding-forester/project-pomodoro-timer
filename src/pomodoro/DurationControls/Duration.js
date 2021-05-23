@@ -23,7 +23,7 @@ function Duration({ onDurationChange, classSuffix, title, min, max, stepValue, m
 
   return (
     <div className="col">
-      <div className="input-group input-group-lg mb-2">
+      <div className="input-group input-group-lg mb-2 justify-content-center">
         <span className="input-group-text" data-testid={`duration-${classSuffix}`}>
           {title} Duration: {minutesToDuration(minutes)}
         </span>
