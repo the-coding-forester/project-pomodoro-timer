@@ -34,9 +34,10 @@ function StatusControls({ isRunning, isPaused, onStop, onPlay, onPause }) {
             <span
               className={classNames({
                 oi: true,
-                "oi-media-play": !isPaused,
-                "oi-media-pause": isPaused,
-              })}
+                "oi-media-play": !isRunning || isPaused,
+                "oi-media-pause": isRunning,
+              }
+              )}
             />
           </button>
 

@@ -1,4 +1,5 @@
 import React from "react"
+import Duration from "./Duration"
 
 function DurationControls({ onFocusDurationChange, onBreakDurationChange, focusMinutes, breakMinutes }) {
 
