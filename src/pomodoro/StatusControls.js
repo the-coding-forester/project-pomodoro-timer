@@ -46,6 +46,7 @@ function StatusControls({ isRunning, isPaused, onStop, onPlay, onPause }) {
             className="btn btn-secondary"
             title="Stop the session"
             onClick={onStop}
+            data-testid="stop"
             disabled={!isRunning}
           >
             <span className="oi oi-media-stop" />
